@@ -1,0 +1,60 @@
+import random
+from tkinter import *
+
+
+class Quiz:
+    def __init__(self, window):
+        num1 = random.randrange(1, 10)
+        num2 = random.randrange(1, 10)
+        answer = num1 * num2
+
+        self.window = window
+
+        self.frame_name = Frame(self.window)
+        self.label_name = Label(self.frame_name, text=num1)
+        #self.entry_name = Entry(self.frame_name)
+        self.label_name.pack(padx=5, side='left')
+        #self.entry_name.pack(padx=5, side='left')
+        self.frame_name.pack(anchor='w', pady=10)
+
+        self.frame_name = Frame(self.window)
+        self.label_name_2 = Label(self.frame_name, text=num2)
+        #self.entry_name_2 = Entry(self.frame_name)
+        self.label_name_2.pack(padx=5, side='left')
+        #self.entry_name_2.pack(padx=15, side='left')
+        self.frame_name.pack(anchor='w', pady=10)
+
+        self.frame_name = Frame(self.window)
+        self.label_name_3 = Label(self.frame_name, text='Answer?')
+        self.entry_name_3 = Entry(self.frame_name)
+        self.label_name_3.pack(padx=5, side='left')
+        self.entry_name_3.pack(padx=15, side='left')
+        self.frame_name.pack(anchor='w', pady=10)
+
+        self.frame_bottom = Frame(self.window)
+        self.button_submit = Button(self.window, text='SAVE', command=self.clicked)
+        self.frame_bottom.pack()
+        self.button_submit.pack(pady='10')
+
+    def clicked(self):
+        guess = self.entry_name_3.get()
+        guess = int(guess)
+        if guess == answer:
+            print('Correct!')
+            num1 = random.randrange(1, 10)
+            num2 = random.randrange(1, 10)
+        else:
+            print('Incorrect')
+
+def main():
+    window = Tk()
+    window.title('Multiplication Quiz')
+    window.geometry('400x200')
+    window.resizable(True, True)
+    widgets = Quiz(window)
+    window.mainloop()
+
+
+
+if __name__ == '__main__':
+    main()
